@@ -19,10 +19,15 @@ export class Contribution {
   @Column()
   track: string;
 
-  @Column()
+  @Column({ 
+    type: "boolean",
+    default: null
+  })
   isAccepted: boolean;
 
-  @Column()
+  @Column({
+    type: "date"
+  })
   date: Date;
 
   @ManyToOne((type) => Producer, (producer) => producer.contributions)
