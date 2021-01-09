@@ -1,6 +1,7 @@
 import { 
     Column, 
     Entity, 
+    JoinColumn, 
     ManyToOne, 
     PrimaryGeneratedColumn 
 } from "typeorm";
@@ -25,8 +26,10 @@ export class Contribution {
   date: Date;
 
   @ManyToOne((type) => Producer, (producer) => producer.contributions)
+  @JoinColumn({name: 'producer_id'})
   producer: Producer;
 
   @ManyToOne((type) => Audio, (audio) => audio.contributions)
+  @JoinColumn({name: "audio_id"})
   audio: Audio;
 }
