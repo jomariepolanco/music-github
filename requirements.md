@@ -19,3 +19,9 @@ Please list examples of how your project meets the following requirements below:
 - [ ] Usage of at least 5 UI components from the [material-ui/@core](https://material-ui.com/) library (if you are not using React, a comparable UI library is acceptable)
 
 - [ ] An example of a reusable UI component that you have created and used in the app. This should be different than the 5 UI components from the vendor library.
+
+
+https://www.tutorialspoint.com/typeorm/typeorm_with_express.htm
+https://github.com/w3tecch/typeorm-seeding
+https://typeorm.io/#/
+https://marak.github.io/faker.js/
