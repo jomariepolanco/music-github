@@ -23,7 +23,7 @@ createConnection().then(async connection => {
         app[r.method](r.route, (req: express.Request, res: express.Response, next: express.NextFunction) => {
             const data = (new (r.controller as any))[r.action](req, res, next)
             if (data instanceof Promise){
-                data.then(d => d !== null && d !== undefined ? res.send(d) : undefined)
+                data.then(d => res.send(d))
             } else if (data !== null && data !== undefined){
                 data.json()
             }
