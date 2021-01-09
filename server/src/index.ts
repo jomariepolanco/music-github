@@ -1,21 +1,55 @@
 import "reflect-metadata";
+import * as createError from 'http-errors'
+import * as express from 'express'
+import * as cookieParser from 'cookie-parser'
+import * as logger from 'morgan'
 import {createConnection} from "typeorm";
-import {User} from "./entity/User";
+import {Routes} from './routes'
+import {Producer} from "./entity/Producer";
+
 
 createConnection().then(async connection => {
 
-    console.log("Inserting a new user into the database...");
-    const user = new User();
-    user.firstName = "Timber";
-    user.lastName = "Saw";
-    user.age = 25;
-    await connection.manager.save(user);
-    console.log("Saved a new user with id: " + user.id);
+    const app = express();
+    const port = 8080;
 
-    console.log("Loading users from the database...");
-    const users = await connection.manager.find(User);
-    console.log("Loaded users: ", users);
+    app.use(logger('dev'));
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(cookieParser());
+    app.set('view engine', 'html');
 
-    console.log("Here you can setup and run express/koa/any other framework.");
+    Routes.forEach(r => {
+        app[r.method](r.route, (req: express.Request, res: express.Response, next: express.NextFunction) => {
+            const data = (new (r.controller as any))[r.action](req, res, next)
+            if (data instanceof Promise){
+                data.then(d => d !== null && d !== undefined ? res.send(d) : undefined)
+            } else if (data !== null && data !== undefined){
+                data.json()
+            }
+        })
+    })
+
+    // catch 404 and forward to error handler
+    app.use(function (req, res, next) {
+        next(createError(404));
+    });
+  
+    // error handler
+    app.use(function (err: Error, req: express.Request, res: express.Response, next: express.NextFunction) {
+        // set locals, only providing error in development
+        res.locals.message = err.message;
+        res.locals.error = req.app.get('env') === 'development' ? err : {};
+  
+        res.status(500);
+        res.json({
+            message: err.message,
+            error: err,
+        });
+    });
+
+    app.listen(port, () => {
+        console.log(`Listening at http://localhost:${port}`);
+      });
 
 }).catch(error => console.log(error));
