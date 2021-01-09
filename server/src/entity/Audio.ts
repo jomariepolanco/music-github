@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   Entity,
   JoinColumn,
@@ -11,7 +12,7 @@ import { Genre } from "./Genre";
 import { Contribution } from "./Contribution";
 
 @Entity()
-export class Audio {
+export class Audio extends BaseEntity{
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -31,4 +32,5 @@ export class Audio {
 
   @OneToMany((type) => Contribution, (contribution) => contribution.audio)
   contributions: Contribution[];
+
 }
