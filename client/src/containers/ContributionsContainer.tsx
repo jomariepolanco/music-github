@@ -1,9 +1,10 @@
-import { Container } from '@material-ui/core'
+import { Container, Modal } from '@material-ui/core'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import ContributionCard from '../components/ContributionCard'
+import CreateContributionForm from '../components/CreateContributionForm'
 import { boundContributions } from '../store/contribution/ContributionAction'
 import { Contribution } from '../store/contribution/models/Contribution'
 import { AppActions } from '../store/models/actions'
@@ -35,6 +36,8 @@ class ContributionsContainer extends Component<LinkProps>{
         return (
             <Container fixed>
                 {this.renderContributions()}
+                    <CreateContributionForm />
+                
             </Container>
         )
     }
