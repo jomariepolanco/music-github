@@ -19,14 +19,14 @@ import { Audio } from '../store/audio/models/Audio'
 interface Props {}
 
 interface LinkStateProps {
-    genres: Genre[],
-    producers: Producer[];
+    // genres: Genre[],
+    // producers: Producer[];
     audios: Audio[];
 }
 
 interface LinkDispatchProps {
-    boundGenres: () => void;
-    boundProducers: () => void;
+    // boundGenres: () => void;
+    // boundProducers: () => void;
     boundAudios: () => void;
 }
 
@@ -39,18 +39,14 @@ class Sidebar extends Component<LinkProps>{
     }
 
     componentDidMount(){
-        this.props.boundGenres()
-        this.props.boundProducers()
+        // this.props.boundGenres()
+        // this.props.boundProducers()
         this.props.boundAudios()
     }
 
     renderAudios = () => {
         const filteredAudioList = [...this.props.audios].filter(audio => audio.title.toLowerCase().includes(this.state.searchInput.toLowerCase()))
-        return filteredAudioList.map(audio => <AudioList key={audio.id} title={audio.title}/>)
-    }
-
-    renderAudio = (e: any) => {
-        const audio = [...this.props.audios].find(audio => audio.title === e.target.id)
+        return filteredAudioList.map(audio => <AudioList key={audio.id} title={audio.title} id={audio.id} />)
     }
 
     onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +56,7 @@ class Sidebar extends Component<LinkProps>{
     render(): JSX.Element{
         return (
             <aside>
-                <AudioSearch searchInput={this.state.searchInput} genres={this.props.genres} changeHandler={this.onChangeHandler} />
+                <AudioSearch searchInput={this.state.searchInput} changeHandler={this.onChangeHandler} />
                <List component="nav" style={{ textAlign: 'center'}}>
                     {this.renderAudios()}
                </List>
@@ -72,14 +68,14 @@ class Sidebar extends Component<LinkProps>{
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-    genres: state.genreReducer.genres,
-    producers: state.producerReducer.producers,
+    // genres: state.genreReducer.genres,
+    // producers: state.producerReducer.producers,
     audios: state.audioReducer.audios
 })
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
-    boundGenres: bindActionCreators(boundGenres, dispatch),
-    boundProducers: bindActionCreators(boundProducers, dispatch),
+    // boundGenres: bindActionCreators(boundGenres, dispatch),
+    // boundProducers: bindActionCreators(boundProducers, dispatch),
     boundAudios: bindActionCreators(boundAudios, dispatch)
 })
 export default connect(msp, mdp)(Sidebar)
