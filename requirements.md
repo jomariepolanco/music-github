@@ -25,3 +25,6 @@ https://www.tutorialspoint.com/typeorm/typeorm_with_express.htm
 https://github.com/w3tecch/typeorm-seeding
 https://typeorm.io/#/
 https://marak.github.io/faker.js/
+
+https://reactjs.org/docs/static-type-checking.html#typescript
+https://create-react-app.dev/docs/adding-typescript/
