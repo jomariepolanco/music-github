@@ -10,8 +10,8 @@ import { Producer } from "./Producer";
 
 @Entity()
 export class Contribution {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column("text")
   comment: string;
@@ -31,10 +31,10 @@ export class Contribution {
   date: Date;
 
   @ManyToOne((type) => Producer, (producer) => producer.contributions)
-  @JoinColumn({name: 'producer_id'})
+  @JoinColumn({name: 'producerId'})
   producer: Producer;
 
   @ManyToOne((type) => Audio, (audio) => audio.contributions)
-  @JoinColumn({name: "audio_id"})
+  @JoinColumn({name: "audioId"})
   audio: Audio;
 }

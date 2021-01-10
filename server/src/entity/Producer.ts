@@ -9,8 +9,8 @@ import { Contribution } from "./Contribution";
 
 @Entity()
 export class Producer {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ length: 100 })
   username: string;

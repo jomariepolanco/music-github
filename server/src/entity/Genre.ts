@@ -8,13 +8,13 @@ import { Audio } from "./Audio";
 
 @Entity()
 export class Genre {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   name: string;
 
  @OneToMany(type => Audio, audio => audio.genre)
- audios: Audio[]
+ audios: Audio[];
 
 }

@@ -13,8 +13,8 @@ import { Contribution } from "./Contribution";
 
 @Entity()
 export class Audio extends BaseEntity{
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column()
   title: string;
@@ -23,11 +23,11 @@ export class Audio extends BaseEntity{
   track: string;
 
   @ManyToOne((type) => Producer, (producer) => producer.audios)
-  @JoinColumn({name: 'producer_id'})
+  // @JoinColumn({name: 'producer_id'})
   producer: Producer;
 
   @ManyToOne((type) => Genre, (genre) => genre.audios)
-  @JoinColumn({name: 'genre_id'})
+  // @JoinColumn({name: 'genre_id'})
   genre: Genre;
 
   @OneToMany((type) => Contribution, (contribution) => contribution.audio)
