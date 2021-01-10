@@ -2,12 +2,13 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk, {ThunkMiddleware} from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import {genreReducer} from './genre/GenreReducer'
+import {audioReducer} from './audio/AudioReducer'
 import {AppActions} from './models/actions'
 
 const logger = createLogger()
 
 export const rootReducer = combineReducers({
-    genreReducer
+    genreReducer, audioReducer
 })
 
 export type AppState = ReturnType<typeof rootReducer>
