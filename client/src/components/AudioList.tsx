@@ -3,6 +3,10 @@ import {ListItem} from '@material-ui/core'
 import { connect } from 'react-redux'
 import { AppState } from '../store/rootStore'
 import { Audio } from '../store/audio/models/Audio'
+import { AppActions } from '../store/models/actions'
+import {boundOneAudio} from '../store/audio/AudioAction'
+import {bindActionCreators} from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 
 interface Props {
     title: string;
@@ -11,15 +15,19 @@ interface Props {
 
 interface LinkStateProps {
     audios: Audio[];
+    audio: object;
 }
 
-type LinkProps = LinkStateProps & Props
+interface LinkDispatchProps {
+    boundOneAudio: (id: number) => void;
+}
+
+type LinkProps = LinkStateProps & LinkDispatchProps & Props
 
 class AudioList extends Component<LinkProps>{
 
     clickHandler = () => {
-        const audio = [...this.props.audios].find(audio => audio.id === this.props.id)
-        console.log(audio)
+        this.props.boundOneAudio(this.props.id)
     }
 
     render() {
@@ -34,7 +42,12 @@ class AudioList extends Component<LinkProps>{
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-    audios: state.audioReducer.audios
+    audios: state.audioReducer.audios,
+    audio: state.oneAudioReducer.audio
 })
 
-export default connect(msp)(AudioList);
+const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
+    boundOneAudio: bindActionCreators(boundOneAudio, dispatch)
+})
+
+export default connect(msp, mdp)(AudioList);

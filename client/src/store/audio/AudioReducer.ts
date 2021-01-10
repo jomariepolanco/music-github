@@ -4,25 +4,23 @@ import {AudioActionTypes, OneAudioActionType,GET_AUDIOS_FAILURE, GET_AUDIOS_REQU
 interface AudioState {
     load: boolean;
     audios: Audio[];
-    audio: {};
     err: string;
 }
 
 const defaultState: AudioState = {
     load: false,
     audios: [],
-    audio: {},
     err: ''
 }
 
 export const audioReducer = (state = defaultState, action: AudioActionTypes): AudioState => {
     switch(action.type){
         case GET_AUDIOS_REQUEST:
-            return {load: true, audios: [], audio: {}, err: ''}
+            return {load: true, audios: [], err: ''}
         case GET_AUDIOS_SUCCESS:
-            return {load: false, audios: action.audios, audio: {}, err: ''}
+            return {load: false, audios: action.audios, err: ''}
         case GET_AUDIOS_FAILURE:
-            return {load: false, audios: [], audio: {}, err: action.err}
+            return {load: false, audios: [], err: action.err}
         default: 
             return state
     }
@@ -34,7 +32,12 @@ interface OneAudioState {
     err: string;
 }
 
-export const oneAudioReducer = (state = defaultState, action: OneAudioActionType): OneAudioState => {
+const initialState: OneAudioState = {
+    load: false,
+    audio: {},
+    err: ''
+}
+export const oneAudioReducer = (state = initialState, action: OneAudioActionType): OneAudioState => {
     switch(action.type){
         case GET_ONE_AUDIO_REQUEST:
             return {load: true, audio: {}, err: ''}
