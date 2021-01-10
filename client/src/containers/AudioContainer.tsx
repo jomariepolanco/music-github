@@ -13,6 +13,7 @@ interface Props {}
 
 interface LinkStateProps {
     audios: Audio[]
+    audio: any;
 }
 
 interface LinkDispatchProps {
@@ -27,22 +28,19 @@ class AudioContainer extends Component<LinkProps>{
         this.props.boundAudios()
     }
 
-    renderAudios = () => {
-        return [...this.props.audios].map(audio => <AudioCard key={audio.id} title={audio.title} track={audio.track} />)
-    }
-
     
     render() {
         return (
             <Container fixed>
-                {this.renderAudios()}
+                <AudioCard />
             </Container>
         )
     }
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-    audios: state.audioReducer.audios
+    audios: state.audioReducer.audios,
+    audio: state.oneAudioReducer.audio
 })
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({

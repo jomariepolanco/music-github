@@ -1,24 +1,28 @@
 import { Card, CardContent } from '@material-ui/core'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Audio } from '../store/audio/models/Audio'
+import { AppState } from '../store/rootStore'
 
-interface Props {
-    title: string;
-    track: string;
+interface Props {}
+
+interface LinkStateProps {
+    audio: any;
 }
 
-export default class AudioCard extends Component<Props>{
-    // componentDidMount(){
-    //     debugger
-    //     console.log('hi')
-    // }
+type LinkProps = LinkStateProps & Props
+
+class AudioCard extends Component<LinkProps>{
+    
     render() {
+        console.log(this.props.audio)
         return (
             <div>
             <Card variant="outlined">
                 <CardContent>
-                    <h3>{this.props.title}</h3>
+                    <h3>{this.props.audio.title}</h3>
                     <audio controls>
-                        <source src={this.props.track}/>
+                        <source src={this.props.audio.track}/>
                     </audio>
                 </CardContent>
             </Card>
@@ -26,3 +30,9 @@ export default class AudioCard extends Component<Props>{
         )
     }
 }
+
+const msp = (state: AppState): LinkStateProps => ({
+    audio: state.oneAudioReducer.audio
+})
+
+export default connect(msp)(AudioCard);

@@ -15,7 +15,6 @@ interface Props {
 
 interface LinkStateProps {
     audios: Audio[];
-    audio: object;
 }
 
 interface LinkDispatchProps {
@@ -25,6 +24,10 @@ interface LinkDispatchProps {
 type LinkProps = LinkStateProps & LinkDispatchProps & Props
 
 class AudioList extends Component<LinkProps>{
+
+    componentDidMount(){
+        this.props.boundOneAudio(this.props.id)
+    }
 
     clickHandler = () => {
         this.props.boundOneAudio(this.props.id)
@@ -42,8 +45,7 @@ class AudioList extends Component<LinkProps>{
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-    audios: state.audioReducer.audios,
-    audio: state.oneAudioReducer.audio
+    audios: state.audioReducer.audios
 })
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
