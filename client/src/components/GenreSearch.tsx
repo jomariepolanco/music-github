@@ -1,18 +1,13 @@
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import { Genre } from '../store/genre/models/Genre'
 
 interface Props {
     genres: Genre[];
     genreInput: string;
-    genreChangeHandler: (e: any) => void;
+    genreChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 class GenreSearch extends Component<Props>{
-
-
-    onChangeHandler = (e: any) => {
-        this.setState({[e.target.name]: e.target.value})
-    }
 
     render() {
         return (
