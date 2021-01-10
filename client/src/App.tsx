@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from './containers/Sidebar';
+import 'fontsource-roboto'
 
 
 const App: React.FC = () => {
