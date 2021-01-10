@@ -4,7 +4,6 @@ export const GET_GENRES_REQUEST = 'GET_GENRES'
 export const GET_GENRES_SUCCESS = 'GET_GENRES_SUCCESS'
 export const GET_GENRES_FAILURE = 'GET_GENRES_FAILURE'
 
-
 interface GenreAsync {
     load: boolean;
     genres: Genre[];

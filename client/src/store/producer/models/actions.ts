@@ -6,7 +6,7 @@ export const GET_PRODUCERS_FAILURE = 'GET_PRODUCER_FAILURE'
 
 interface ProducerAsync {
     load: boolean;
-    genres: Producer[];
+    producers: Producer[];
     err: string;
 }
 
@@ -20,4 +20,4 @@ interface GetProducersFailure extends ProducerAsync {
     type: typeof GET_PRODUCERS_FAILURE
 }
 
-export type ProducerActionTypes = GetProducersRequest | GetProducersFailure | GetProducersSuccess
+export type ProducerActionTypes = GetProducersRequest | GetProducersSuccess | GetProducersFailure
