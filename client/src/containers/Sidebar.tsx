@@ -7,8 +7,7 @@ import { AppState } from '../store/rootStore'
 import {AppActions} from '../store/models/actions'
 import { boundGenres } from '../store/genre/GenreAction'
 import { boundProducers } from '../store/producer/ProducerAction'
-import GenreCard from '../components/GenreCard'
-import ProducerCard from '../components/ProducerCard'
+import AudioList from '../components/AudioList'
 import { List } from '@material-ui/core'
 import ProducerSearch from '../components/ProducerSearch'
 import GenreSearch from '../components/GenreSearch'
@@ -47,30 +46,11 @@ class Sidebar extends Component<LinkProps>{
         this.props.boundAudios()
     }
 
-    renderGenres = () => {
-        if (this.state.genreInput.length === 0){
-            return null
-        } else {
-            const filterGenres = [...this.props.genres].filter(genre => genre.name.toLowerCase().includes(this.state.genreInput.toLowerCase()))
-            return filterGenres.map(genre => <GenreCard key={genre.id} name={genre.name} />)
-        }
-    }
-
-    renderProducers = () => {
-        if (this.state.producerInput.length === 0) {
-            return null
-        } else {
-            const filterProducers = [...this.props.producers].filter(producer => producer.name.toLowerCase().includes(this.state.producerInput.toLowerCase()) || producer.username.toLowerCase().includes(this.state.producerInput.toLowerCase()))
-            return filterProducers.map(producer => <ProducerCard key={producer.id} name={producer.name} username={producer.username} />)
-        }
-
-    }
-
     renderAudios = () => {
-        return [...this.props.audios].map(audio => <><div id={audio.title} onClick={this.renderAudioCard}key={audio.id}>{audio.title}</div><br/><br/></>)
+        return [...this.props.audios].map(audio => <AudioList key={audio.id} title={audio.title}/>)
     }
 
-    renderAudioCard = (e: any) => {
+    renderAudio = (e: any) => {
         const audio = [...this.props.audios].find(audio => audio.title === e.target.id)
     }
 
@@ -84,8 +64,6 @@ class Sidebar extends Component<LinkProps>{
                 <GenreSearch genreInput={this.state.genreInput} genres={this.props.genres} genreChangeHandler={this.onChangeHandler} />
                 <ProducerSearch producerInput={this.state.producerInput} producers={this.props.producers} producerChangeHandler={this.onChangeHandler}/>
                <List component="nav" style={{ textAlign: 'center'}}>
-                    {this.renderGenres()}
-                    {this.renderProducers()}
                     {this.renderAudios()}
                </List>
 
