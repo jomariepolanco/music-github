@@ -30,20 +30,20 @@ export const GET_ONE_AUDIO_REQUEST = 'GET_ONE_AUDIO'
 export const GET_ONE_AUDIO_SUCCESS = 'GET_ONE_AUDIO_SUCCESS'
 export const GET_ONE_AUDIO_FAILURE = 'GET_ONE_AUDIO_FAILURE'
 
-// interface OneAudioAsync {
-//     load: boolean;
-//     audio: Audio;
-//     err: string;
-// }
+interface OneAudioAsync {
+    load: boolean;
+    audio: object;
+    err: string;
+}
 
-// interface GetOneAudioRequest extends OneAudioAsync {
-//     type: typeof GET_ONE_AUDIO_REQUEST
-// }
-// interface GetOneAudioSuccess extends OneAudioAsync {
-//     type: typeof GET_ONE_AUDIO_SUCCESS
-// }
-// interface GetOneAudioFailure extends OneAudioAsync {
-//     type: typeof GET_ONE_AUDIO_FAILURE
-// }
+interface GetOneAudioRequest extends OneAudioAsync {
+    type: typeof GET_ONE_AUDIO_REQUEST
+}
+interface GetOneAudioSuccess extends OneAudioAsync {
+    type: typeof GET_ONE_AUDIO_SUCCESS
+}
+interface GetOneAudioFailure extends OneAudioAsync {
+    type: typeof GET_ONE_AUDIO_FAILURE
+}
 
-// export type OneAudioActionType = GetOneAudioFailure | GetOneAudioSuccess | GetOneAudioRequest
+export type OneAudioActionType = GetOneAudioFailure | GetOneAudioSuccess | GetOneAudioRequest

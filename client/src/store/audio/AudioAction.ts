@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { AppActions } from "../models/actions";
-import { GET_AUDIOS_FAILURE, GET_AUDIOS_REQUEST, GET_AUDIOS_SUCCESS } from "./models/actions";
+import { GET_AUDIOS_FAILURE, GET_AUDIOS_REQUEST, GET_AUDIOS_SUCCESS, GET_ONE_AUDIO_FAILURE, GET_ONE_AUDIO_REQUEST, GET_ONE_AUDIO_SUCCESS } from "./models/actions";
 import { Audio } from "./models/Audio";
 
 // audios
@@ -19,12 +19,12 @@ const setAudios = (audios: Audio[]): AppActions => ({
     err: ''
 })
 
-const invalidAudios = (): AppActions => ({
-    type: GET_AUDIOS_FAILURE,
-    load: false,
-    audios: [],
-    err: "Unable to fetch audios"
-})
+// const invalidAudios = (): AppActions => ({
+//     type: GET_AUDIOS_FAILURE,
+//     load: false,
+//     audios: [],
+//     err: "Unable to fetch audios"
+// })
 
 export const boundAudios = () => {
     return (dispatch: Dispatch<AppActions>) => {
@@ -37,23 +37,32 @@ export const boundAudios = () => {
 
 // //audio
 
-// const requestAudio = (): AppActions => ({
-//     type: GET_ONE_AUDIO_REQUEST,
-//     load: true,
-//     audio: HTMLAudioElement,
-//     err: ''
-// })
+const requestAudio = (): AppActions => ({
+    type: GET_ONE_AUDIO_REQUEST,
+    load: true,
+    audio: {},
+    err: ''
+})
 
-// const setAudio = (audio: Audio): AppActions => ({
-//     type: GET_ONE_AUDIO_SUCCESS,
-//     load: false,
-//     audio: audio,
-//     err: ''
-// })
+const setAudio = (audio: Audio): AppActions => ({
+    type: GET_ONE_AUDIO_SUCCESS,
+    load: false,
+    audio: audio,
+    err: ''
+})
 
 // const invalidAudio = (): AppActions => ({
 //     type: GET_ONE_AUDIO_FAILURE,
 //     load: false, 
-//     audio: '',
+//     audio: {},
 //     err: 'Unable to fetch audio'
 // })
+
+export const boundOneAudio = (id: number) => {
+    return (dispatch: Dispatch<AppActions>) => {
+        dispatch(requestAudio())
+        return fetch(`api/audios/${id}`)
+        .then(r => r.json())
+        .then(audio => dispatch(setAudio(audio)))
+    }
+}
