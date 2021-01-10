@@ -1,5 +1,5 @@
 export interface Audio {
-    id: string;
+    id: number;
     title: string;
     track: string;
 }

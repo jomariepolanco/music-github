@@ -1,5 +1,5 @@
 export interface Contribution {
-    id: string;
+    id: number;
     comment: string;
     track: string;
     date: Date;

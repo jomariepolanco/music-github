@@ -1,5 +1,5 @@
 export interface Producer {
-    id: string;
+    id: number;
     username: string;
     password: string;
     name: string;
