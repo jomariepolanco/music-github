@@ -8,6 +8,7 @@ import {AppActions} from '../store/models/actions'
 import { boundGenres } from '../store/genre/GenreAction'
 import { boundProducers } from '../store/producer/ProducerAction'
 import GenreCard from '../components/GenreCard'
+import ProducerCard from '../components/ProducerCard'
 import { List } from '@material-ui/core'
 import ProducerSearch from '../components/ProducerSearch'
 import GenreSearch from '../components/GenreSearch'
@@ -32,7 +33,8 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 class Sidebar extends Component<LinkProps>{
 
     state = {
-        genreInput: ""
+        genreInput: "",
+        producerInput: ""
     }
 
     componentDidMount(){
@@ -49,18 +51,24 @@ class Sidebar extends Component<LinkProps>{
         // }
     }
 
-    genreChangeHandler = (e: any) => {
+    renderProducers = () => {
+        const filterProducers = [...this.props.producers].filter(producer => producer.name.toLowerCase().includes(this.state.producerInput.toLowerCase()) || producer.username.toLowerCase().includes(this.state.producerInput.toLowerCase()))
+        return filterProducers.map(producer => <ProducerCard key={producer.id} name={producer.name} username={producer.username} />)
+
+    }
+
+    onChangeHandler = (e: any) => {
         this.setState({[e.target.name]: e.target.value})
     }
 
     render(): JSX.Element{
-        console.log(this.props.producers)
         return (
             <aside>
-                <GenreSearch genreInput={this.state.genreInput} genres={this.props.genres} genreChangeHandler={this.genreChangeHandler} />
-                <ProducerSearch />
+                <GenreSearch genreInput={this.state.genreInput} genres={this.props.genres} genreChangeHandler={this.onChangeHandler} />
+                <ProducerSearch producerInput={this.state.producerInput} producers={this.props.producers} producerChangeHandler={this.onChangeHandler}/>
                <List component="nav" style={{maxWidth: '15%'}}>
                     {this.renderGenres()}
+                    {this.renderProducers()}
 
                </List>
 
