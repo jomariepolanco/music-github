@@ -6,6 +6,10 @@ import { Genre } from '../store/genre/models/Genre'
 import { AppState } from '../store/rootStore'
 import {AppActions} from '../store/models/actions'
 import { boundGenres } from '../store/genre/GenreAction'
+import GenreCard from '../components/GenreCard'
+import { List } from '@material-ui/core'
+
+
 
 interface Props {}
 
@@ -26,13 +30,18 @@ class Sidebar extends Component<LinkProps>{
     }
 
     renderGenres = () => {
-        return [...this.props.genres].map(genre => (<div>{genre.name}</div>))
+        return [...this.props.genres].map(genre => <GenreCard key={genre.id} name={genre.name} />)
     }
-    render() {
+    render(): JSX.Element{
         return (
-            <div>
-                {this.renderGenres()}
-            </div>
+            <aside>
+               <List component="nav">
+                    {this.renderGenres()}
+
+               </List>
+
+               
+            </aside>
         )
     }
 }
