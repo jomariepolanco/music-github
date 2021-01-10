@@ -2,6 +2,7 @@ import { Container } from '@material-ui/core'
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 import AudioCard from '../components/AudioCard'
 import { boundAudios } from '../store/audio/AudioAction'
 import { Audio } from '../store/audio/models/Audio'
@@ -26,11 +27,15 @@ class AudioContainer extends Component<LinkProps>{
         this.props.boundAudios()
     }
 
+    renderAudios = () => {
+        return [...this.props.audios].map(audio => <AudioCard key={audio.id} title={audio.title} track={audio.track} />)
+    }
+
     
     render() {
         return (
             <Container fixed>
-                <AudioCard />
+                {this.renderAudios()}
             </Container>
         )
     }

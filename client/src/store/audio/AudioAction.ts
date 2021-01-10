@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
 import { AppActions } from "../models/actions";
 import { GET_AUDIOS_FAILURE, GET_AUDIOS_REQUEST, GET_AUDIOS_SUCCESS } from "./models/actions";
+import { Audio } from "./models/Audio";
 
 const requestAudios = (): AppActions => ({
     type: GET_AUDIOS_REQUEST,
