@@ -43,12 +43,8 @@ class Sidebar extends Component<LinkProps>{
     }
 
     renderGenres = () => {
-        // if (this.state.genreInput.length === 0){
-        //     return "Search by genre or producer"
-        // } else {
             const filterGenres = [...this.props.genres].filter(genre => genre.name.toLowerCase().includes(this.state.genreInput.toLowerCase()))
             return filterGenres.map(genre => <GenreCard key={genre.id} name={genre.name} />)
-        // }
     }
 
     renderProducers = () => {
