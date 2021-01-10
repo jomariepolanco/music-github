@@ -9,8 +9,7 @@ import { boundGenres } from '../store/genre/GenreAction'
 import { boundProducers } from '../store/producer/ProducerAction'
 import AudioList from '../components/AudioList'
 import { List } from '@material-ui/core'
-import ProducerSearch from '../components/ProducerSearch'
-import GenreSearch from '../components/GenreSearch'
+import AudioSearch from '../components/AudioSearch'
 import { Producer } from '../store/producer/models/Producer'
 import { boundAudios } from '../store/audio/AudioAction'
 import { Audio } from '../store/audio/models/Audio'
@@ -36,8 +35,7 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 class Sidebar extends Component<LinkProps>{
 
     state = {
-        genreInput: "",
-        producerInput: ""
+        searchInput: ""
     }
 
     componentDidMount(){
@@ -61,8 +59,7 @@ class Sidebar extends Component<LinkProps>{
     render(): JSX.Element{
         return (
             <aside>
-                <GenreSearch genreInput={this.state.genreInput} genres={this.props.genres} genreChangeHandler={this.onChangeHandler} />
-                <ProducerSearch producerInput={this.state.producerInput} producers={this.props.producers} producerChangeHandler={this.onChangeHandler}/>
+                <AudioSearch genreInput={this.state.searchInput} genres={this.props.genres} changeHandler={this.onChangeHandler} />
                <List component="nav" style={{ textAlign: 'center'}}>
                     {this.renderAudios()}
                </List>

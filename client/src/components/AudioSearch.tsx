@@ -7,17 +7,17 @@ interface Props {
     genreChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-class GenreSearch extends Component<Props>{
+class AudioSearch extends Component<Props>{
 
     render() {
         return (
             <div>
                 <form>
-                    <input type="text" placeholder="genre search" name="genreInput" value={this.props.genreInput} onChange={this.props.genreChangeHandler}/>
+                    <input type="text" placeholder="search tracks" name="searchInput" value={this.props.searchInput} onChange={this.props.onChangeHandler}/>
                 </form>
             </div>
         )
     }
 }
 
-export default GenreSearch
+export default AudioSearch
