@@ -39,7 +39,7 @@ class Sidebar extends Component<LinkProps>{
             <aside>
                 <GenreSearch />
                 <ProducerSearch />
-               <List component="nav">
+               <List component="nav" style={{maxWidth: '15%'}}>
                     {this.renderGenres()}
 
                </List>

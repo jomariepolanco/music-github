@@ -28,3 +28,8 @@ https://marak.github.io/faker.js/
 
 https://reactjs.org/docs/static-type-checking.html#typescript
 https://create-react-app.dev/docs/adding-typescript/
+
+//react redux thunk tutorial
+https://www.youtube.com/watch?v=VOWVYpOy_Lw
+
+https://www.typescriptlang.org/docs/handbook/jsx.html
