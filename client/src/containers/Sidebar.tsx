@@ -45,7 +45,8 @@ class Sidebar extends Component<LinkProps>{
     }
 
     renderAudios = () => {
-        return [...this.props.audios].map(audio => <AudioList key={audio.id} title={audio.title}/>)
+        const filteredAudioList = [...this.props.audios].filter(audio => audio.title.toLowerCase().includes(this.state.searchInput.toLowerCase()))
+        return filteredAudioList.map(audio => <AudioList key={audio.id} title={audio.title}/>)
     }
 
     renderAudio = (e: any) => {
@@ -59,7 +60,7 @@ class Sidebar extends Component<LinkProps>{
     render(): JSX.Element{
         return (
             <aside>
-                <AudioSearch genreInput={this.state.searchInput} genres={this.props.genres} changeHandler={this.onChangeHandler} />
+                <AudioSearch searchInput={this.state.searchInput} genres={this.props.genres} changeHandler={this.onChangeHandler} />
                <List component="nav" style={{ textAlign: 'center'}}>
                     {this.renderAudios()}
                </List>
