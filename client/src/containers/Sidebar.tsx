@@ -8,6 +8,8 @@ import {AppActions} from '../store/models/actions'
 import { boundGenres } from '../store/genre/GenreAction'
 import GenreCard from '../components/GenreCard'
 import { List } from '@material-ui/core'
+import ProducerSearch from '../components/ProducerSearch'
+import GenreSearch from '../components/GenreSearch'
 
 
 
@@ -35,6 +37,8 @@ class Sidebar extends Component<LinkProps>{
     render(): JSX.Element{
         return (
             <aside>
+                <GenreSearch />
+                <ProducerSearch />
                <List component="nav">
                     {this.renderGenres()}
 
