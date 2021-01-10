@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import { Producer } from '../store/producer/models/Producer'
 
 interface Props {
     producerInput: string;
     producers: Producer[];
-    producerChangeHandler: (e: any) => void;
+    producerChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default class ProducerSearch extends Component<Props>{

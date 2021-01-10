@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {ThunkDispatch} from 'redux-thunk'
@@ -57,7 +57,7 @@ class Sidebar extends Component<LinkProps>{
 
     }
 
-    onChangeHandler = (e: any) => {
+    onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({[e.target.name]: e.target.value})
     }
 

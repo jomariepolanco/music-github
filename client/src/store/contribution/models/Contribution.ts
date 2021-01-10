@@ -4,4 +4,6 @@ export interface Contribution {
     track: string;
     date: Date;
     isAccepted: boolean;
+    audioId: number;
+    producerId: number;
 }
