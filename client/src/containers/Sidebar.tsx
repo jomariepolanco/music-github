@@ -27,17 +27,31 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 
 class Sidebar extends Component<LinkProps>{
 
+    state = {
+        genreInput: ""
+    }
+
     componentDidMount(){
         this.props.boundGenres()
     }
 
     renderGenres = () => {
-        return [...this.props.genres].map(genre => <GenreCard key={genre.id} name={genre.name} />)
+        // if (this.state.genreInput.length === 0){
+        //     return "Search by genre or producer"
+        // } else {
+            const filterGenres = [...this.props.genres].filter(genre => genre.name.toLowerCase().includes(this.state.genreInput.toLowerCase()))
+            return filterGenres.map(genre => <GenreCard key={genre.id} name={genre.name} />)
+        // }
     }
+
+    genreChangeHandler = (e: any) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
     render(): JSX.Element{
         return (
             <aside>
-                <GenreSearch />
+                <GenreSearch genreInput={this.state.genreInput} genres={this.props.genres} genreChangeHandler={this.genreChangeHandler} />
                 <ProducerSearch />
                <List component="nav" style={{maxWidth: '15%'}}>
                     {this.renderGenres()}
