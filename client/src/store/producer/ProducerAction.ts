@@ -24,7 +24,7 @@ const invalidProducers = (): AppActions => ({
     err: "Unable to fetch producers"
 })
 
-export const boundGenres = () => {
+export const boundProducers = () => {
     return (dispatch: Dispatch<AppActions>) => {
         dispatch(requestProducers())
         return fetch('api/producers')

@@ -6,21 +6,25 @@ import { Genre } from '../store/genre/models/Genre'
 import { AppState } from '../store/rootStore'
 import {AppActions} from '../store/models/actions'
 import { boundGenres } from '../store/genre/GenreAction'
+import { boundProducers } from '../store/producer/ProducerAction'
 import GenreCard from '../components/GenreCard'
 import { List } from '@material-ui/core'
 import ProducerSearch from '../components/ProducerSearch'
 import GenreSearch from '../components/GenreSearch'
+import { Producer } from '../store/producer/models/Producer'
 
 
 
 interface Props {}
 
 interface LinkStateProps {
-    genres: Genre[]
+    genres: Genre[],
+    producers: Producer[];
 }
 
 interface LinkDispatchProps {
     boundGenres: () => void;
+    boundProducers: () => void;
 }
 
 type LinkProps = LinkStateProps & LinkDispatchProps & Props
@@ -33,6 +37,7 @@ class Sidebar extends Component<LinkProps>{
 
     componentDidMount(){
         this.props.boundGenres()
+        this.props.boundProducers()
     }
 
     renderGenres = () => {
@@ -49,6 +54,7 @@ class Sidebar extends Component<LinkProps>{
     }
 
     render(): JSX.Element{
+        console.log(this.props.producers)
         return (
             <aside>
                 <GenreSearch genreInput={this.state.genreInput} genres={this.props.genres} genreChangeHandler={this.genreChangeHandler} />
@@ -65,10 +71,12 @@ class Sidebar extends Component<LinkProps>{
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-    genres: state.genreReducer.genres
+    genres: state.genreReducer.genres,
+    producers: state.producerReducer.producers
 })
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
-    boundGenres: bindActionCreators(boundGenres, dispatch)
+    boundGenres: bindActionCreators(boundGenres, dispatch),
+    boundProducers: bindActionCreators(boundProducers, dispatch)
 })
 export default connect(msp, mdp)(Sidebar)
