@@ -13,7 +13,7 @@ import { AppState } from './store/rootStore';
 import {AppActions} from './store/models/actions'
 import { ThunkDispatch } from 'redux-thunk';
 import { bindActionCreators } from 'redux';
-import { boundProducers, boundUser } from './store/producer/ProducerAction';
+import { boundProducers, boundUser, createUser } from './store/producer/ProducerAction';
 import { Producer } from './store/producer/models/Producer';
 
 const styles = (theme: Theme) => createStyles({
@@ -37,6 +37,7 @@ interface LinkStateProps {
 interface LinkDispatchProps {
   boundProducers: () => void;
   boundUser: (user: Producer) => void;
+  createUser: (userObj: object) => void;
 }
 
 type LinkProps = LinkStateProps & LinkDispatchProps & Props
@@ -57,7 +58,7 @@ class App extends React.Component<LinkProps, {}>{
  }
 
   handleSignup = (userObj: {username: string, password: string, name: string}) => {
-    // this.props.createUser(userObj)
+    this.props.createUser(userObj)
     console.log('signup')
   }
 
@@ -101,7 +102,8 @@ const msp = (state: AppState): LinkStateProps => ({
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
   boundProducers: bindActionCreators(boundProducers, dispatch),
-  boundUser: bindActionCreators(boundUser, dispatch)
+  boundUser: bindActionCreators(boundUser, dispatch),
+  createUser: bindActionCreators(createUser, dispatch)
 })
 
 
