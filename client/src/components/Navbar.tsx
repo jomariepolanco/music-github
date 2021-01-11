@@ -33,7 +33,7 @@ const Navbar: NavbarComponent = () => {
                     </Typography>
                     <Button color="inherit">Contributions</Button>
                     <Button href='/login' color="inherit">Login</Button>
-                    <Button color="inherit">Signup</Button>
+                    <Button href='/signup' color="inherit">Signup</Button>
                 </Toolbar>
             </AppBar>
         </nav>
