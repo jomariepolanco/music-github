@@ -43,3 +43,25 @@ interface SetOneUserFailure extends OneProducerAsync {
 }
 
 export type UserActionType = SetOneUserFailure | SetOneUserRequest | SetOneUserSuccess
+
+export const CREATE_USER_REQUEST = 'CREATE_USER'
+export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS'
+export const CREATE_USER_FAILURE = 'CREATE_USER_FAILURE'
+
+interface CreateProducerAsync {
+    load: boolean;
+    producer: object;
+    err: string;
+}
+
+interface CreateOneUserRequest extends CreateProducerAsync {
+    type: typeof CREATE_USER_REQUEST
+}
+interface CreateOneUserSuccess extends CreateProducerAsync {
+    type: typeof CREATE_USER_SUCCESS
+}
+interface CreatetOneUserFailure extends CreateProducerAsync {
+    type: typeof CREATE_USER_FAILURE
+}
+
+export type CreateUserActionType = CreateOneUserRequest | CreateOneUserSuccess | CreatetOneUserFailure

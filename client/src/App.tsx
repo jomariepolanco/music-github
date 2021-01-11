@@ -56,7 +56,8 @@ class App extends React.Component<LinkProps, {}>{
     }
  }
 
-  handleSignup = () => {
+  handleSignup = (userObj: {username: string, password: string, name: string}) => {
+    // this.props.createUser(userObj)
     console.log('signup')
   }
 
