@@ -26,9 +26,18 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 class ContributionsContainer extends Component<LinkProps>{
 
 
+    deleteHandler = (id: number) => {
+        fetch(`api/contributions/${id}`, {
+            method: "DELETE",
+            headers: {"content-type": "application/json"}
+        })
+        .then(r => r.json())
+        .then(() => this.props.boundContributions())
+    }
+
     renderContributions = () => {
         const contributions = [...this.props.contributions].filter(contribution => contribution.audio.id === this.props.audio.id)
-        return contributions.map(c => <ContributionCard key={c.id} comment={c.comment} track={c.track} isAccepted={c.isAccepted} date={c.date}/>)
+        return contributions.map(c => <ContributionCard deleteHandler={this.deleteHandler} key={c.id} id={c.id} comment={c.comment} track={c.track} isAccepted={c.isAccepted} date={c.date}/>)
     }
     render() {
         return (

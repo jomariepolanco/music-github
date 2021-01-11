@@ -6,9 +6,15 @@ interface Props {
     track: string;
     isAccepted: boolean;
     date: Date;
+    id: number;
+    deleteHandler: (id: number) => void;
 }
 
 export default class ContributionCard extends Component<Props>{
+
+    deleteClickHandler = () => {
+        this.props.deleteHandler(this.props.id)
+    }
     render() {
         return (
             <div>
@@ -19,8 +25,7 @@ export default class ContributionCard extends Component<Props>{
                             <source src={this.props.track}/>    
                         </audio>
                         <p>{this.props.comment}</p>
-                        <Button variant="contained" color="primary">Accept</Button>
-                        <Button variant="contained" color="secondary" >Deny</Button>
+                        <Button onClick={this.deleteClickHandler} variant="contained" color="primary">Delete</Button>
                     </CardContent>
                 </Card>
             </div>
