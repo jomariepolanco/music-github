@@ -33,23 +33,26 @@ const App: React.FC = () => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
-      <Grid container spacing={0}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}> 
-            <Navbar handleLogin={handleLogin} handleSignup={handleSignup} />
-          </Paper>
+        <Grid container spacing={0}>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}> 
+              <Navbar handleLogin={handleLogin} handleSignup={handleSignup} />
+            </Paper>
+          </Grid>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <Sidebar />
+            </Paper>
+          </Grid>
+          <Grid item xs={9}>
+            <Paper>
+              <Switch>
+                <Route path='/' render={() => <h1>Welcome</h1>} />
+                <Route path='/audios' component={BodyContainer} />
+              </Switch>
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>
-            <Sidebar />
-          </Paper>
-        </Grid>
-        <Grid item xs={9}>
-          <Paper>
-            <BodyContainer />
-          </Paper>
-        </Grid>
-      </Grid>
     </div>
   );
 }
