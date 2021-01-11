@@ -3,8 +3,12 @@ import * as createError from 'http-errors'
 import * as express from 'express'
 import * as cookieParser from 'cookie-parser'
 import * as logger from 'morgan'
+import * as cors from 'cors'
+import * as querystring from 'querystring'
+import * as request from 'request'
 import {createConnection} from "typeorm";
 import {Routes} from './routes'
+import e = require("express");
 
 
 createConnection().then(async connection => {
@@ -53,13 +57,39 @@ createConnection().then(async connection => {
 
 }).catch(error => console.log(error));
 
+//Spotify
 const http = express()
 
-http.use(logger('dev'));
-http.use(express.json());
-http.use(express.urlencoded({ extended: false }));
-http.use(cookieParser());
-http.set('view engine', 'html');
+const client_id =  '148844e9632d496597bcac8fc1259fff'; 
+const client_secret = '40957a5a4653421aa8a223740cf06452'; 
+const redirect_uri = 'http://localhost:8888';
+
+const authOptions = {
+    url: 'https://accounts.spotify.com/api/token',
+    headers: {
+        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+    },
+    form: {
+        grant_type: 'client_credentials'
+    },
+    json: true
+}
+
+request.post(authOptions, function(error, response, body){
+    if (!error && response.statusCode === 200){
+        const token = body.access_token
+        const options = {
+            url: 'https://api.spotify.com/v1/users/jmperezperez',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            json: true
+        }
+        request.get(options, function(error, response, body){
+            console.log(body)
+        })
+    }
+})
 
 http.listen(8888, () => {
     console.log("listening at http://localhost:8888")
