@@ -5,7 +5,6 @@ import * as cookieParser from 'cookie-parser'
 import * as logger from 'morgan'
 import {createConnection} from "typeorm";
 import {Routes} from './routes'
-import {Producer} from "./entity/Producer";
 
 
 createConnection().then(async connection => {
@@ -53,3 +52,20 @@ createConnection().then(async connection => {
       });
 
 }).catch(error => console.log(error));
+
+const http = express()
+
+http.use(logger('dev'));
+http.use(express.json());
+http.use(express.urlencoded({ extended: false }));
+http.use(cookieParser());
+http.set('view engine', 'html');
+
+http.listen(8888, () => {
+    console.log("listening at http://localhost:8888")
+});
+
+  
+http.get('/', (req: express.Request, res: express.Response) => {
+    res.send('Hello World')
+});
