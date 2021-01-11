@@ -46,10 +46,7 @@ const App: React.FC = () => {
           </Grid>
           <Grid item xs={9}>
             <Paper>
-              <Switch>
-                <Route path='/' render={() => <h1>Welcome</h1>} />
-                <Route path='/audios' component={BodyContainer} />
-              </Switch>
+                <BodyContainer />
             </Paper>
           </Grid>
         </Grid>
