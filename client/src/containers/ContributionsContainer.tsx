@@ -25,13 +25,9 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 
 class ContributionsContainer extends Component<LinkProps>{
 
-    componentDidMount(){
-        this.props.boundContributions()
-    }
-
 
     renderContributions = () => {
-        const contributions = [...this.props.contributions].filter(contribution => contribution.audioId === this.props.audio.id)
+        const contributions = [...this.props.contributions].filter(contribution => contribution.audio.id === this.props.audio.id)
         return contributions.map(c => <ContributionCard key={c.id} comment={c.comment} track={c.track} isAccepted={c.isAccepted} date={c.date}/>)
     }
     render() {

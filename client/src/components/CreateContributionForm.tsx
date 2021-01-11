@@ -53,8 +53,6 @@ const CreateContributionForm: FormComponent = ({audio, boundContributions}) => {
         })
         .then(r => r.json())
         .then(newContribution => {
-            // debugger
-            console.log('SUCCESS', newContribution)
             boundContributions()
         })
     }

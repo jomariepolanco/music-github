@@ -6,5 +6,5 @@ export interface Contribution {
     track: string;
     date: Date;
     isAccepted: boolean;
-    audioId: number;
+    audio: Audio;
 }

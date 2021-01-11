@@ -24,7 +24,7 @@ class AudioCard extends Component<LinkProps>{
                     </Typography>
                     <br/>
                     <div>
-                        <ReactAudioPlayer src={this.props.audio.track} controls autoPlay/>
+                        <ReactAudioPlayer src={this.props.audio.track} controls />
                         
                     </div>
                 </CardContent>
