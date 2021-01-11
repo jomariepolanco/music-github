@@ -25,6 +25,10 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 
 class ContributionsContainer extends Component<LinkProps>{
 
+    componentDidMount(){
+        this.props.boundContributions()
+    }
+
 
     deleteHandler = (id: number) => {
         fetch(`api/contributions/${id}`, {
