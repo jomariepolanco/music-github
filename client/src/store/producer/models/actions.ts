@@ -21,3 +21,25 @@ interface GetProducersFailure extends ProducerAsync {
 }
 
 export type ProducerActionTypes = GetProducersRequest | GetProducersSuccess | GetProducersFailure
+
+export const SET_USER_REQUEST = 'SET_USER'
+export const SET_USER_SUCCESS = 'SET_USER_SUCCESS'
+export const SET_USER_FAILURE = 'SET_USER_FAILURE'
+
+interface OneProducerAsync {
+    load: boolean;
+    producer: object;
+    err: string;
+}
+
+interface SetOneUserRequest extends OneProducerAsync {
+    type: typeof SET_USER_REQUEST
+}
+interface SetOneUserSuccess extends OneProducerAsync {
+    type: typeof SET_USER_SUCCESS
+}
+interface SetOneUserFailure extends OneProducerAsync {
+    type: typeof SET_USER_FAILURE
+}
+
+export type UserActionType = SetOneUserFailure | SetOneUserRequest | SetOneUserSuccess

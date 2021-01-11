@@ -12,7 +12,7 @@ import { AppState } from './store/rootStore';
 import {AppActions} from './store/models/actions'
 import { ThunkDispatch } from 'redux-thunk';
 import { bindActionCreators } from 'redux';
-import { boundProducers } from './store/producer/ProducerAction';
+import { boundProducers, boundUser } from './store/producer/ProducerAction';
 import { Producer } from './store/producer/models/Producer';
 
 const styles = (theme: Theme) => createStyles({
@@ -30,10 +30,12 @@ interface Props extends WithStyles<typeof styles>{}
 
 interface LinkStateProps {
   producers: Producer[];
+  producer: Producer | object;
 }
 
 interface LinkDispatchProps {
   boundProducers: () => void;
+  boundUser: (user: Producer) => void;
 }
 
 type LinkProps = LinkStateProps & LinkDispatchProps & Props
@@ -48,7 +50,9 @@ class App extends React.Component<LinkProps>{
   
   handleLogin = (object: {username: string, password: string}) => {
     const user = [...this.props.producers].find(producer => producer.username === object.username && producer.password === object.password)
-    this.props.boundUser(user)
+    if (user){
+      this.props.boundUser(user)
+    }
   }
 
   handleSignup = () => {
@@ -88,11 +92,13 @@ class App extends React.Component<LinkProps>{
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-  producers: state.producerReducer.producers
+  producers: state.producerReducer.producers,
+  producer: state.setUserReducer.producer
 })
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
-  boundProducers: bindActionCreators(boundProducers, dispatch)
+  boundProducers: bindActionCreators(boundProducers, dispatch),
+  boundUser: bindActionCreators(boundUser, dispatch)
 })
 
 

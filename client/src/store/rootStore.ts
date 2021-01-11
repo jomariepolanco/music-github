@@ -3,14 +3,14 @@ import thunk, {ThunkMiddleware} from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import {genreReducer} from './genre/GenreReducer'
 import {audioReducer, oneAudioReducer} from './audio/AudioReducer'
-import {producerReducer} from './producer/ProducerReducer'
+import {producerReducer, setUserReducer} from './producer/ProducerReducer'
 import {contributionReducer} from './contribution/ContributionReducer'
 import {AppActions} from './models/actions'
 
 const logger = createLogger()
 
 export const rootReducer = combineReducers({
-    genreReducer, audioReducer, producerReducer, contributionReducer, oneAudioReducer
+    genreReducer, audioReducer, producerReducer, contributionReducer, oneAudioReducer, setUserReducer
 })
 
 export type AppState = ReturnType<typeof rootReducer>
