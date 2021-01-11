@@ -11,7 +11,7 @@ import { Producer } from "./Producer";
 import { Genre } from "./Genre";
 import { Contribution } from "./Contribution";
 
-@Entity()
+@Entity('audios')
 export class Audio extends BaseEntity{
   @PrimaryGeneratedColumn()
   id: number;

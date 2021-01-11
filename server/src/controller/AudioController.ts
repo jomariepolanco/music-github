@@ -18,7 +18,7 @@ export class AudioController {
   }
 
   async remove(req: Request, res: Response, next: NextFunction) {
-    const Audio = await this.audioRepo.findOne(req.params.id);
-    return this.audioRepo.remove(Audio);
+    const audio = await this.audioRepo.findOne(req.params.id);
+    return this.audioRepo.remove(audio);
   }
 }

@@ -7,7 +7,7 @@ import {
 import { Audio } from "./Audio";
 import { Contribution } from "./Contribution";
 
-@Entity()
+@Entity('producers')
 export class Producer {
   @PrimaryGeneratedColumn()
   id: number;

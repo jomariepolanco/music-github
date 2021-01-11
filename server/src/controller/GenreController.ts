@@ -18,7 +18,7 @@ export class GenreController {
   }
 
   async remove(req: Request, res: Response, next: NextFunction) {
-    const Genre = await this.genreRepo.findOne(req.params.id);
-    return this.genreRepo.remove(Genre);
+    const genre = await this.genreRepo.findOne(req.params.id);
+    return this.genreRepo.remove(genre);
   }
 }

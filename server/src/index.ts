@@ -31,7 +31,7 @@ createConnection().then(async connection => {
     })
 
     // catch 404 and forward to error handler
-    app.use(function (req, res, next) {
+    app.use(function (req: express.Request, res: express.Response, next: express.NextFunction) {
         next(createError(404));
     });
   

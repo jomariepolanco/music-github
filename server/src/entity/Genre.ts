@@ -6,7 +6,7 @@ import {
 } from "typeorm";
 import { Audio } from "./Audio";
 
-@Entity()
+@Entity('genres')
 export class Genre {
   @PrimaryGeneratedColumn()
   id: number;
