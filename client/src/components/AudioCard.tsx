@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Audio } from '../store/audio/models/Audio'
 import { AppState } from '../store/rootStore'
+import ReactAudioPlayer from 'react-audio-player'
 
 interface Props {}
 
@@ -11,28 +12,6 @@ interface LinkStateProps {
 }
 
 type LinkProps = LinkStateProps & Props
-
-// const styles = {
-   
-//     details: {
-//       display: 'flex',
-//       flexDirection: 'column',
-//     },
-//     cover: {
-//       width: 151,
-//     },
-//     controls: {
-//       display: 'flex',
-//       alignItems: 'center',
-//       paddingLeft: theme.spacing(1),
-//       paddingBottom: theme.spacing(1),
-//     },
-//     playIcon: {
-//       height: 38,
-//       width: 38,
-//     },
-//   }
-
 
 class AudioCard extends Component<LinkProps>{
     render() {
@@ -45,9 +24,8 @@ class AudioCard extends Component<LinkProps>{
                     </Typography>
                     <br/>
                     <div>
-                        <audio controls preload="auto">
-                            <source src={this.props.audio.track}/>
-                        </audio>
+                        <ReactAudioPlayer src={this.props.audio.track} controls autoPlay/>
+                        
                     </div>
                 </CardContent>
             </Card>
