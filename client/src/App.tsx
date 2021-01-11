@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom'
 import Sidebar from './containers/Sidebar';
 import Login from './components/Login'
+import Signup from './components/Signup'
 import 'fontsource-roboto'
 import Navbar from './components/Navbar';
 import BodyContainer from './containers/BodyContainer';
@@ -66,7 +67,7 @@ class App extends React.Component<LinkProps>{
       <div className={classes.root}>
         <Switch>
           <Route path='/login' render={() => <Login loginHandler={this.handleLogin} />}/>
-        
+          <Route path='/signup' render={() => <Signup signupHandler={this.handleSignup} /> } />
           <Grid container spacing={0}>
             <Grid item xs={12}>
               <Paper className={classes.paper}> 
