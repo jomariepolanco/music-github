@@ -16,7 +16,14 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export default function Navbar() {
+interface Props {
+    handleLogin: () => void;
+    handleSignup: () => void;
+}
+
+type NavbarComponent = React.FC<Props>
+
+const Navbar: NavbarComponent = (props) => {
     const classes = useStyles()
     return (
         <nav className={classes.root}>
@@ -29,11 +36,13 @@ export default function Navbar() {
                         Music Git 
                     </Typography>
                     <Button color="inherit">Contributions</Button>
-                    <Button color="inherit">Login</Button>
-                    <Button color="inherit">Signup</Button>
+                    <Button color="inherit" onClick={props.handleLogin}>Login</Button>
+                    <Button color="inherit" onClick={props.handleSignup}>Signup</Button>
                 </Toolbar>
             </AppBar>
         </nav>
     )
 
 }
+
+export default Navbar;
