@@ -1,4 +1,4 @@
-import { GET_PRODUCERS_FAILURE, GET_PRODUCERS_REQUEST, GET_PRODUCERS_SUCCESS, ProducerActionTypes, SET_USER_FAILURE, SET_USER_REQUEST, SET_USER_SUCCESS, UserActionType } from "./models/actions";
+import { CREATE_USER_REQUEST, CREATE_USER_SUCCESS, GET_PRODUCERS_FAILURE, GET_PRODUCERS_REQUEST, GET_PRODUCERS_SUCCESS, ProducerActionTypes, SET_USER_FAILURE, SET_USER_REQUEST, SET_USER_SUCCESS, UserActionType, CreateUserActionType, CREATE_USER_FAILURE } from "./models/actions";
 import { Producer } from "./models/Producer";
 
 interface ProducerState {
@@ -47,6 +47,19 @@ export const setUserReducer = (state = initialState, action: UserActionType): Us
         case SET_USER_FAILURE:
             return {load: false, producer: {}, err: action.err}
         default:
+            return state
+    }
+}
+
+export const setNewUserReducer = (state = initialState, action: CreateUserActionType): UserState => {
+    switch(action.type){
+        case CREATE_USER_REQUEST:
+            return {load: true, producer: {}, err: ''}
+        case CREATE_USER_SUCCESS:
+            return {load: false, producer: action.producer, err: ''}
+        case CREATE_USER_FAILURE:
+            return {load: false, producer: {}, err: action.err}
+        default: 
             return state
     }
 }
