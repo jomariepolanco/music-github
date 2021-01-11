@@ -34,3 +34,6 @@ https://create-react-app.dev/docs/adding-typescript/
 https://www.youtube.com/watch?v=VOWVYpOy_Lw
 
 https://www.typescriptlang.org/docs/handbook/jsx.html
+
+https://www.youtube.com/watch?v=Paz0gnODPE0
+TYPEORM Tutorial

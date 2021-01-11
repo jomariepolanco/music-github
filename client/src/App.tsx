@@ -20,13 +20,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 const App: React.FC = () => {
+
+  const handleLogin = () => {
+    console.log('login')
+  }
+
+  const handleSignup = () => {
+    console.log('signup')
+  }
+
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <Grid container spacing={0}>
         <Grid item xs={12}>
           <Paper className={classes.paper}> 
-            <Navbar />
+            <Navbar handleLogin={handleLogin} handleSignup={handleSignup} />
           </Paper>
         </Grid>
         <Grid item xs={3}>
