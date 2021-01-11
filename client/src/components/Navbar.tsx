@@ -1,6 +1,7 @@
-import { AppBar, createStyles, makeStyles, Theme, Toolbar, Typography, IconButton, Link, Button } from '@material-ui/core'
+import { AppBar, createStyles, makeStyles, Theme, Toolbar, Typography, IconButton, Button } from '@material-ui/core'
 import AlbumRoundedIcon from '@material-ui/icons/AlbumRounded'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({
@@ -16,14 +17,9 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-interface Props {
-    handleLogin: () => void;
-    handleSignup: () => void;
-}
+type NavbarComponent = React.FC
 
-type NavbarComponent = React.FC<Props>
-
-const Navbar: NavbarComponent = (props) => {
+const Navbar: NavbarComponent = () => {
     const classes = useStyles()
     return (
         <nav className={classes.root}>
@@ -36,8 +32,8 @@ const Navbar: NavbarComponent = (props) => {
                         Music Git 
                     </Typography>
                     <Button color="inherit">Contributions</Button>
-                    <Button color="inherit" onClick={props.handleLogin}>Login</Button>
-                    <Button color="inherit" onClick={props.handleSignup}>Signup</Button>
+                    <Button href='/login' color="inherit">Login</Button>
+                    <Button color="inherit">Signup</Button>
                 </Toolbar>
             </AppBar>
         </nav>

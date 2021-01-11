@@ -75,8 +75,8 @@ const CreateContributionForm: FormComponent = ({audio, boundContributions}) => {
 
                 </DialogContent>
                 <DialogActions>
-                    <Button type="submit" color="primary">
-                        Submit
+                    <Button type="submit" color="primary" onClick={handleClose}>
+                        Submit 
                     </Button>
                 </DialogActions>
                 </form>
