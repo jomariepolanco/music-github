@@ -36,7 +36,7 @@ class ContributionsContainer extends Component<LinkProps>{
         return (
             <Container fixed>
                 {this.renderContributions()}
-                    <CreateContributionForm />
+                <CreateContributionForm />
                 
             </Container>
         )

@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@material-ui/core'
+import { Button, Card, CardContent } from '@material-ui/core'
 import React, { Component } from 'react'
 
 interface Props {
@@ -19,8 +19,8 @@ export default class ContributionCard extends Component<Props>{
                             <source src={this.props.track}/>    
                         </audio>
                         <p>{this.props.comment}</p>
-                        <button>Accept</button>
-                        <button>Deny</button>
+                        <Button variant="contained" color="primary">Accept</Button>
+                        <Button variant="contained" color="secondary" >Deny</Button>
                     </CardContent>
                 </Card>
             </div>
