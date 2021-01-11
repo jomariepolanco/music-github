@@ -28,6 +28,7 @@ export default function Navbar() {
                     <Typography variant="h5" color="inherit" className={classes.title}>
                         Music Git 
                     </Typography>
+                    <Button color="inherit">Contributions</Button>
                     <Button color="inherit">Login</Button>
                     <Button color="inherit">Signup</Button>
                 </Toolbar>
