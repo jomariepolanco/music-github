@@ -1,3 +1,5 @@
+import { Audio } from "../../audio/models/Audio";
+
 export interface Contribution {
     id: number;
     comment: string;
@@ -5,5 +7,4 @@ export interface Contribution {
     date: Date;
     isAccepted: boolean;
     audioId: number;
-    producerId: number;
 }

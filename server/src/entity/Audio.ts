@@ -23,11 +23,11 @@ export class Audio extends BaseEntity{
   track: string;
 
   @ManyToOne((type) => Producer, (producer) => producer.audios)
-  // @JoinColumn({name: 'producer_id'})
+  @JoinColumn()
   producer: Producer;
 
   @ManyToOne((type) => Genre, (genre) => genre.audios)
-  // @JoinColumn({name: 'genre_id'})
+  @JoinColumn()
   genre: Genre;
 
   @OneToMany((type) => Contribution, (contribution) => contribution.audio)

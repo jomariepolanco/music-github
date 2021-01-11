@@ -31,10 +31,10 @@ export class Contribution {
   date: Date;
 
   @ManyToOne((type) => Producer, (producer) => producer.contributions)
-  @JoinColumn({name: 'producerId'})
+  @JoinColumn()
   producer: Producer;
 
   @ManyToOne((type) => Audio, (audio) => audio.contributions)
-  @JoinColumn({name: "audioId"})
+  @JoinColumn()
   audio: Audio;
 }

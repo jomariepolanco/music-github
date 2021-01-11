@@ -4,6 +4,6 @@ import { Contribution } from "../../entity/Contribution";
 
 export default class CreateContributions implements Seeder {
     public async run(factory: Factory, connection: Connection): Promise<any> {
-        await factory(Contribution)().createMany(10)
+        await factory(Contribution)().createMany(0)
     }
 }

@@ -36,21 +36,25 @@ const CreateContributionForm: FormComponent = ({audio, boundContributions}) => {
     }
 
     const handleSubmit = (e: any) => {
+        e.preventDefault()
+        const comment = e.target.comment.value
+        const track = e.target.audio.value
+        console.log('before fetch', comment, track) 
         fetch('api/contributions/', {
             method: "POST", 
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                comment: e.target.comment.value,
-                track: e.target.audio.value,
+                comment: comment,
+                track: track,
                 audioId: audio.id,
                 isAccepted: false,
                 date: new Date()
-
             })
         })
         .then(r => r.json())
         .then(newContribution => {
-            console.log(newContribution)
+            // debugger
+            console.log('SUCCESS', newContribution)
             boundContributions()
         })
     }

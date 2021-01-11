@@ -5,7 +5,7 @@ import { Audio } from "../../entity/Audio";
 import { Producer } from "../../entity/Producer";
 import { createQueryBuilder, getConnection, QueryBuilder } from "typeorm";
 
-define(Contribution, (faker: typeof Faker) => {
+define(Contribution, (faker: typeof Faker, context: {audio: Audio}) => {
   const comment = faker.lorem.sentences();
   const isAccepted = false;
   const date = new Date();
@@ -16,5 +16,6 @@ define(Contribution, (faker: typeof Faker) => {
   contribution.comment = comment;
   contribution.track = track;
   contribution.date = date;
+  contribution.audio = context.audio
   return contribution;
 });
