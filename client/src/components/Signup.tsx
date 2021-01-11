@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Signup extends Component {
+interface Props {
+    signupHandler: () => void;
+}
+
+export default class Signup extends Component<Props>{
     render() {
         return (
             <div>

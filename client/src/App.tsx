@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import Sidebar from './containers/Sidebar';
 import Login from './components/Login'
 import Signup from './components/Signup'
@@ -43,7 +43,7 @@ type LinkProps = LinkStateProps & LinkDispatchProps & Props
 
 
 
-class App extends React.Component<LinkProps>{
+class App extends React.Component<LinkProps, {}>{
 
   componentDidMount(){
     this.props.boundProducers()
@@ -54,7 +54,7 @@ class App extends React.Component<LinkProps>{
     if (user){
       this.props.boundUser(user)
     }
-  }
+ }
 
   handleSignup = () => {
     console.log('signup')
@@ -63,6 +63,7 @@ class App extends React.Component<LinkProps>{
   
   render(){
     const {classes} = this.props
+    console.log(this.props.producer)
     return (
       <div className={classes.root}>
         <Switch>

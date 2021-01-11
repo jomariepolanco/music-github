@@ -1,10 +1,20 @@
 import React, { ChangeEvent, Component } from 'react'
+import { AppState } from '../store/rootStore'
+import {connect} from 'react-redux'
+import { Producer } from '../store/producer/models/Producer'
+import {Redirect} from 'react-router-dom'
 
 interface Props {
     loginHandler: (userObj: {username: string, password: string}) => void;
 }
 
-class Login extends Component<Props>{
+interface LinkStateProps {
+    producer: Producer | any;
+}
+
+type LinkProps = LinkStateProps & Props
+
+class Login extends Component<LinkProps>{
 
     state = {
         username: "",
@@ -22,6 +32,10 @@ class Login extends Component<Props>{
 
     render() {
         return (
+            <>
+            {this.props.producer.name ? 
+                <Redirect to='/'  />
+            :
             <div>
                 <form onSubmit={this.submitHandler}>
                     <input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.changeHandler}/>
@@ -29,8 +43,15 @@ class Login extends Component<Props>{
                     <button>Login</button>
                 </form>
             </div>
+
+            }
+            </>
         )
     }
 }
 
-export default Login;
+const msp = (state: AppState): LinkStateProps => ({
+    producer: state.setUserReducer.producer
+})
+
+export default connect(msp)(Login);
