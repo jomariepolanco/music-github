@@ -1,4 +1,5 @@
 import { 
+  BaseEntity,
     Column, 
     Entity, 
     OneToMany, 
@@ -7,7 +8,7 @@ import {
 import { Audio } from "./Audio";
 
 @Entity('genres')
-export class Genre {
+export class Genre extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
