@@ -14,6 +14,7 @@ interface Props {}
 
 interface LinkStateProps {
     contributions: Contribution[]
+    audio: any;
 }
 
 interface LinkDispatchProps {
@@ -30,7 +31,8 @@ class ContributionsContainer extends Component<LinkProps>{
 
 
     renderContributions = () => {
-        return [...this.props.contributions].map(c => <ContributionCard key={c.id} comment={c.comment} track={c.track} isAccepted={c.isAccepted} date={c.date}/>)
+        const contributions = [...this.props.contributions].filter(contribution => contribution.audioId === this.props.audio.id)
+        return contributions.map(c => <ContributionCard key={c.id} comment={c.comment} track={c.track} isAccepted={c.isAccepted} date={c.date}/>)
     }
     render() {
         return (
@@ -44,7 +46,8 @@ class ContributionsContainer extends Component<LinkProps>{
 }
 
 const msp = (state: AppState): LinkStateProps => ({
-    contributions: state.contributionReducer.contributions
+    contributions: state.contributionReducer.contributions,
+    audio: state.oneAudioReducer.audio
 })
 
 const mdp = (dispatch: ThunkDispatch<AppState, {}, AppActions>) => ({
