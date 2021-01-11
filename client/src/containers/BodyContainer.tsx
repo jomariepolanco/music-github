@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ContributionsContainer from './ContributionsContainer'
 import AudioContainer from './AudioContainer'
 import { createStyles, makeStyles, Paper, Theme } from '@material-ui/core'

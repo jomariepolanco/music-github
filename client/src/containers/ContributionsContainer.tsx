@@ -1,4 +1,4 @@
-import { Container, Modal } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

@@ -1,7 +1,6 @@
 import { AppBar, createStyles, makeStyles, Theme, Toolbar, Typography, IconButton, Button } from '@material-ui/core'
 import AlbumRoundedIcon from '@material-ui/icons/AlbumRounded'
 import React from 'react'
-import {NavLink} from 'react-router-dom'
 
 const useStyles = makeStyles((theme: Theme) => 
     createStyles({

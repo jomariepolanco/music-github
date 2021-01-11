@@ -1,5 +1,4 @@
 import React, { ChangeEvent, Component } from 'react'
-import { Genre } from '../store/genre/models/Genre'
 
 interface Props {
     // genres: Genre[];
